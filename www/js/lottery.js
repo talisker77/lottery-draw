@@ -19,8 +19,8 @@
       {
         lottery.draw.renderTicketHolders(t);
       });
-      lottery.draw.toggleListHeaders();
     }
+    lottery.draw.toggleListHeaders();
   },
   toggleListHeaders: function ()
   {
@@ -71,6 +71,10 @@
       h.tickets.forEach(function (t) { allTickets.push(t) });
     });
     winnerId = util.random(allTickets.length) - 1;
+    if (allTickets.length === 0)
+    {
+      return;
+    }
     var winnerTicket = allTickets[winnerId].ticket;
     var luckyWinner, winnerTicketIdx, holderIdx;
     lottery.draw.holders.forEach(function (h, hIdx)
@@ -82,16 +86,25 @@
           winnerTicketIdx = tIdx;
           holderIdx = hIdx;
           luckyWinner = h.holder;
+          return;
         }
       });
       if (luckyWinner)
       {
-        lottery.draw.holders[hIdx].tickets.splice(winnerTicketIdx, 1);
         w = { winner: luckyWinner, ticket: winnerTicket };
-        lottery.draw.totalTickets--;
+        return;
+      }
+      if (luckyWinner)
+      {
         return;
       }
     });
+    if (luckyWinner)
+    {
+      //ensuring only reducing when winner found.
+      lottery.draw.holders[holderIdx].tickets.splice(winnerTicketIdx, 1);
+      lottery.draw.totalTickets = lottery.draw.totalTickets - 1;
+    }
     lottery.draw.save();
     $("#summary").text(lottery.draw.totalTickets);
     $("<li data-iconpos='left' class='ui-icon-star winner'>Name: " + w.winner + "<span class='ticket'>" + w.ticket + "</span></li>").appendTo("#ticket-winners");
