@@ -4,7 +4,6 @@
   totalTickets: 0,
   initialize: function ()
   {
-    console.log("initializing lottery draw");
     var btn = document.getElementById('add-ticket-holder'),
       clr = document.getElementById('clear-ticket-holders'),
       drawBtn = document.getElementById('draw-winner');
@@ -22,7 +21,6 @@
       });
       lottery.draw.toggleListHeaders();
     }
-
   },
   toggleListHeaders: function ()
   {
@@ -61,8 +59,8 @@
       localStorage.removeItem('lotteryTotalTickets');
     }
     $("#summary").text(0);
-    $("#ticket-holders").empty();
-    $("#ticket-holders").listview('refresh');
+    $("#ticket-holders, #ticket-winners").empty();
+    $("#ticket-holders, #ticket-winners").listview('refresh');
     lottery.draw.toggleListHeaders();
   },
   drawWinner: function ()
@@ -73,8 +71,6 @@
       h.tickets.forEach(function (t) { allTickets.push(t) });
     });
     winnerId = util.random(allTickets.length) - 1;
-    console.log("winner idx: " + winnerId);
-    console.log("number of tickets in draw: " + allTickets.length);
     var winnerTicket = allTickets[winnerId].ticket;
     var luckyWinner, winnerTicketIdx, holderIdx;
     lottery.draw.holders.forEach(function (h, hIdx)
@@ -133,7 +129,6 @@
       lottery.draw.save();
       lottery.draw.renderTicketHolders(entry);
     }
-    
   },
   renderTicketHolders: function (entry)
   {
