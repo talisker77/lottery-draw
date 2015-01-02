@@ -1,0 +1,1 @@
+robocopy platforms\android\ant-build\ c:\Users\Erlend\Dropbox\Private cordovaapp-debug.apk

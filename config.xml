@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="talisker.lottery.draw.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Lottery Draw</name>
+    <description>
+        A wine lottery draw application
+    </description>
+    <author email="erlend.torsvik@gmail.com" href="http://talisker1977.blogspot.com/">
+        Erlend Torsvik
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+	<icon src="www/img/logo.png"/>
+	<!-- <platform name="android">
+		<splash src="www/img/wine_lottery.png"/>
+	</platform> -->
+	<preference name="StatusBarOverlaysWebView" value="false"/>
+	
+</widget>

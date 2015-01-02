@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+  <link href="Content/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <title>Lottery draw</title>
+</head>
+<body>
+  <div data-role="page">
+    <div data-role="header" data-position="fixed">
+      <h1>Lottery draw</h1>
+    </div><!-- /header -->
+
+    <div data-role="main" class="ui-content">
+      <div class="ui-content">
+        <input id="holder-name" type="text" required="" placeholder="name of ticket holder" />
+        <input id="holding-tickets" type="number" required="" placeholder="number of tickets" />
+        <input id="tickets-paid" data-mini="true" type="checkbox" checked="checked" />
+        <label for="tickets-paid">Tickets paid for</label>
+        <button id="add-ticket-holder">Add to draw</button>
+        <button id="clear-ticket-holders">Clear</button>
+        <button id="draw-winner">Draw</button>
+        <p>Totalt ticket: <span id="summary"></span></p>
+      </div>
+      <div data-iscroll="">
+        <ul id="ticket-holders" data-role="listview"></ul>
+      </div>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+    </div><!-- /footer -->
+  </div><!-- /page -->
+  <script src="Scripts/jquery-1.8.0.min.js" type="text/javascript"></script>
+  <script src="Scripts/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
