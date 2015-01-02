@@ -12,7 +12,7 @@
   <title>Lottery draw</title>
 </head>
 <body>
-  <div data-role="page">
+  <div data-role="page" data-theme="b">
     <div data-role="header" data-position="fixed">
       <h1>Lottery draw</h1>
     </div><!-- /header -->
@@ -21,15 +21,22 @@
       <div class="ui-content">
         <input id="holder-name" type="text" required="" placeholder="name of ticket holder" />
         <input id="holding-tickets" type="number" required="" placeholder="number of tickets" />
-        <input id="tickets-paid" data-mini="true" type="checkbox" checked="checked" />
+        <input name="tickets-paid" id="tickets-paid" data-mini="true" type="checkbox" checked="checked" />
         <label for="tickets-paid">Tickets paid for</label>
-        <button id="add-ticket-holder">Add to draw</button>
-        <button id="clear-ticket-holders">Clear</button>
-        <button id="draw-winner">Draw</button>
+        <button id="add-ticket-holder" data-icon="plus">Add to draw</button>
+        <button id="clear-ticket-holders" data-icon="delete">Clear</button>
+        <button id="draw-winner" data-icon="star">Draw</button>
         <p>Totalt ticket: <span id="summary"></span></p>
       </div>
-      <div data-iscroll="">
-        <ul id="ticket-holders" data-role="listview"></ul>
+      <div data-iscroll>
+        <ul id="ticket-winners" data-role="listview" data-inset="true">
+          <li id="ticket-winners-header" data-role="list-divider">Winners</li>
+        </ul>
+      </div>
+      <div data-iscroll>
+        <ul id="ticket-holders" data-role="listview" data-inset="true">
+          <li id="ticket-holders-header" data-role="list-divider">Entries</li>
+        </ul>
       </div>
     </div><!-- /content -->
 

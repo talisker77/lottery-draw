@@ -20,8 +20,29 @@
       {
         lottery.draw.renderTicketHolders(t);
       });
+      lottery.draw.toggleListHeaders();
+    }
+
+  },
+  toggleListHeaders: function ()
+  {
+    if ($("#ticket-winners li").size() === 1)
+    {
+      $("#ticket-winners-header").hide();
+    } else
+    {
+      $("#ticket-winners-header").show();
+    }
+    if ($("#ticket-holders li").size() === 1)
+    {
+      $("#ticket-holders-header").hide();
+    }
+    else
+    {
+      $("#ticket-holders-header").show();
     }
   },
+
   save: function ()
   {
     if (lottery.draw.useDatabase)
@@ -42,6 +63,7 @@
     $("#summary").text(0);
     $("#ticket-holders").empty();
     $("#ticket-holders").listview('refresh');
+    lottery.draw.toggleListHeaders();
   },
   drawWinner: function ()
   {
@@ -76,7 +98,9 @@
     });
     lottery.draw.save();
     $("#summary").text(lottery.draw.totalTickets);
-    $("<p>Winner is: " + w.winner + " with ticket: " + w.ticket + "</p>").insertBefore("#ticket-holders");
+    $("<li data-iconpos='left' class='ui-icon-star winner'>Name: " + w.winner + "<span class='ticket'>" + w.ticket + "</span></li>").appendTo("#ticket-winners");
+    $("#ticket-winners,#ticket-holders").listview('refresh');
+    lottery.draw.toggleListHeaders();
   },
   createTickets: function (bought)
   {
@@ -94,22 +118,29 @@
   {
     var holder = $("#holder-name").val();
     var boughtTickets = $("#holding-tickets").val();
-    if (isNaN(boughtTickets))
+    var isPaid = $("#tickets-paid").is(":checked");
+    if (isNaN(boughtTickets) || boughtTickets === 0)
     {
       $("#holding-tickets").css({ "border-color": "red" });
       return;
     }
-    var tickets = lottery.draw.createTickets(boughtTickets);
-    var uid = util.guid();
-    var entry = { id: uid, holder: holder, tickets: tickets };
-    lottery.draw.holders.push(entry);
-    lottery.draw.save();
-    lottery.draw.renderTicketHolders(entry);
+    if (boughtTickets > 0)
+    {
+      var tickets = lottery.draw.createTickets(boughtTickets);
+      var uid = util.guid();
+      var entry = { id: uid, holder: holder, tickets: tickets, paid: isPaid };
+      lottery.draw.holders.push(entry);
+      lottery.draw.save();
+      lottery.draw.renderTicketHolders(entry);
+    }
+    
   },
   renderTicketHolders: function (entry)
   {
-    $("<li data-role='button' data-holder-uid='" + entry.id + "'>name: " + entry.holder + " holding " + entry.tickets.length + " tickets</li>").appendTo("#ticket-holders");
+    var className = entry.paid ? "" : "unpaid-tickets";
+    $("<li data-iconpos='left'  class='" + className + " ui-icon-check' data-tickets-paid='" + entry.paid + "' data-holder-uid='" + entry.id + "'>" + entry.holder + " <span class='ui-li-count'>" + entry.tickets.length + "</span></li>").appendTo("#ticket-holders");
     $("#ticket-holders").listview('refresh');
     $("#summary").text(lottery.draw.totalTickets);
+    lottery.draw.toggleListHeaders();
   }
 };
