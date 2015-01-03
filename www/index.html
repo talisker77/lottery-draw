@@ -12,7 +12,7 @@
   <title>Lottery draw</title>
 </head>
 <body>
-  <div data-role="page" data-theme="b">
+  <div data-role="page" data-theme="b" id="main">
     <div data-role="header" data-position="fixed">
       <h1>Lottery draw</h1>
     </div><!-- /header -->
@@ -41,10 +41,19 @@
     </div><!-- /content -->
 
     <div data-role="footer">
+      <a href="#lottery-history-page">History</a>
     </div><!-- /footer -->
   </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="lottery-history-page">
+    <div data-role="header" data-position="fixed">
+      <h1>Winner history</h1>
+    </div><!-- header -->
+    <div data-role="main" id="lottery-history"></div><!--main-->
+    <div data-role="footer" id="navigation"></div><!--footer-->
+  </div>
   <script src="Scripts/jquery-1.8.0.min.js" type="text/javascript"></script>
   <script src="Scripts/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+  <script src="Scripts/react/react-0.12.2.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>

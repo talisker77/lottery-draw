@@ -29,7 +29,9 @@ lottery.app = {
     jQuery.ajaxSetup({ cache: true });
     jQuery.when(
       jQuery.getScript("js/util.js"),
+      jQuery.getScript("js/navigation.js"),
       jQuery.getScript("js/lottery.js"),
+      jQuery.getScript("js/lottery.draw.history.js"),
       jQuery.Deferred(function (deferred)
       {
         jQuery(deferred.resolve);

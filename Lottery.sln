@@ -24,6 +24,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "www", "http://localhost:497
 		SlnRelativePath = "www\"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99C0A826-282D-46FB-BBB8-B61A62DCBE86}"
+	ProjectSection(SolutionItems) = preProject
+		src-react\lottery.draw.history.js = src-react\lottery.draw.history.js
+		src-react\navigation.js = src-react\navigation.js
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
