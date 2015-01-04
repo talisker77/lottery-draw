@@ -1,9 +1,15 @@
-var navigation ={};
-navigation.part = React.createClass({
+var Navigation ={};
+Navigation.part = React.createClass({
   render: function ()
   {
-    var data = [{ id: 'lottery-history' }, { id: 'main' }];
-    return (<div className="navigation.part"><a href="#main">main page</a></div>);
+    var self = this;
+    return (<div data-role="footer" >
+      <ul>
+       { self.props.items.map(function(m,idx){
+         return <li><a href={'#' + m.id}>{m.text}</a></li>;
+       })}
+      </ul>
+    </div>
+    );
   }
 });
-React.render(<navigation.part />, document.getElementById('navigation'));

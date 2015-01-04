@@ -21,6 +21,11 @@
       });
     }
     lottery.draw.toggleListHeaders();
+    //$("#goto-history").on('click', function ()
+    //{
+    //  //$(":mobile-pagecontainer").pagecontainer()
+    //  React.renderComponent(React.createElement(lottery.draw.history.page, null), document.getElementById("lottery-history-page"));
+    //});
   },
   toggleListHeaders: function ()
   {

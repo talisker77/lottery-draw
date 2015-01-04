@@ -14,6 +14,7 @@ lottery.app = {
   bindEvents: function ()
   {
     document.addEventListener('deviceready', lottery.app.onDeviceReady, false);
+    document.addEventListener('pageinit', lottery.app.onPageInit, false);
   },
   // deviceready Event Handler
   //
@@ -29,9 +30,10 @@ lottery.app = {
     jQuery.ajaxSetup({ cache: true });
     jQuery.when(
       jQuery.getScript("js/util.js"),
-      jQuery.getScript("js/navigation.js"),
+      jQuery.getScript("js/Test.js"),
+      //jQuery.getScript("js/navigation.js"),
       jQuery.getScript("js/lottery.js"),
-      jQuery.getScript("js/lottery.draw.history.js"),
+      //jQuery.getScript("js/lottery.draw.history.js"),
       jQuery.Deferred(function (deferred)
       {
         jQuery(deferred.resolve);
@@ -40,6 +42,9 @@ lottery.app = {
         console.log("done loading scripts => initializing lottery draw");
         lottery.draw.initialize();
       });
+  },
+  onPageInit: function(){
+    console.log('page init called...');
   },
   // Update DOM on a Received Event
   receivedEvent: function (id)
