@@ -1,9 +1,16 @@
-var navigation ={};
-navigation.part = React.createClass({displayName: "part",
+var Navigation ={};
+Navigation.part = React.createClass({displayName: "part",
   render: function ()
   {
-    var data = [{ id: 'lottery-history' }, { id: 'main' }];
-    return (React.createElement("div", {className: "navigation.part"}, React.createElement("a", {href: "#main"}, "main page")));
+    var self = this;
+    return (
+      React.createElement("ul", null, 
+        self.props.items.map(function(m,idx){
+         return React.createElement("li", null, React.createElement("a", {href: '#' + m.id}, m.text));
+       })
+      )
+    );
   }
 });
-React.render(React.createElement(navigation.part, null), document.getElementById('navigation'));
+
+//React.render(<Navigation.part items={[]} />, document.getElementById('bllla'));

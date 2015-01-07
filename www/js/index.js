@@ -4,7 +4,7 @@ lottery.app = {
   // Application Constructor
   initialize: function ()
   {
-    console.log("initialize lottery.app...")
+    console.log("initialize lottery.app...");
     lottery.app.bindEvents();
   },
   // Bind Event Listeners
@@ -14,7 +14,7 @@ lottery.app = {
   bindEvents: function ()
   {
     document.addEventListener('deviceready', lottery.app.onDeviceReady, false);
-    document.addEventListener('pageinit', lottery.app.onPageInit, false);
+    document.addEventListener('pageshow', lottery.app.onPageLoad, false);
   },
   // deviceready Event Handler
   //
@@ -31,9 +31,9 @@ lottery.app = {
     jQuery.when(
       jQuery.getScript("js/util.js"),
       jQuery.getScript("js/Test.js"),
-      //jQuery.getScript("js/navigation.js"),
+      jQuery.getScript("js/navigation.js"),
       jQuery.getScript("js/lottery.js"),
-      //jQuery.getScript("js/lottery.draw.history.js"),
+      jQuery.getScript("js/lottery.draw.history.js"),
       jQuery.Deferred(function (deferred)
       {
         jQuery(deferred.resolve);
@@ -43,8 +43,9 @@ lottery.app = {
         lottery.draw.initialize();
       });
   },
-  onPageInit: function(){
-    console.log('page init called...');
+  onPageLoad: function (ev)
+  {
+    console.log('page load called...' + ev.target);
   },
   // Update DOM on a Received Event
   receivedEvent: function (id)

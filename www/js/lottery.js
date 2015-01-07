@@ -21,11 +21,23 @@
       });
     }
     lottery.draw.toggleListHeaders();
-    //$("#goto-history").on('click', function ()
-    //{
-    //  //$(":mobile-pagecontainer").pagecontainer()
-    //  React.renderComponent(React.createElement(lottery.draw.history.page, null), document.getElementById("lottery-history-page"));
-    //});
+    $(document).on("pagecontainershow", function (e, data)
+    {
+      console.log(data.toPage); /* current active page */
+      React.render(React.createElement(lottery.draw.history.header, null), document.getElementById('header-wrapper'));
+      React.render(React.createElement(lottery.draw.history.content, null), document.getElementById('content-wrapper'));
+      React.render(React.createElement(Navigation.part, { items: [{ id: "main", text: "Home" }, { id: "lottery-history-page", text: "History" }] }), document.getElementById('footer-wrapper'));
+      console.log(data.prevPage); /* previous page */
+    });
+    //  $("#goto-history").on('click', function ()
+    //  {
+    //    console.log('goto history clicked. navigating...');
+    //    $.mobile.pageContainer.pagecontainer("change", "Pages/lottery.history.html");
+    //    //$("Pages/lottery.history.html").on('pageload', function()
+    //    //{
+    //    //  console.log("loaded...Pages/lottery.history.html");
+    //    //});
+    //  });
   },
   toggleListHeaders: function ()
   {
